@@ -16,18 +16,21 @@ describe("NFTMarket", function() {
     const nftContractAddress = nft.address
 
     let listingPrice = await market.getListingPrice()
+    //Converting listing price to string for using it as parameters
     listingPrice = listingPrice.toString()
 
+    //Setting the auction price for the item
     const auctionPrice = ethers.utils.parseUnits('1', 'ether')
 
-    /* create two tokens */
-    await nft.createToken("https://www.mytokenlocation.com")
-    await nft.createToken("https://www.mytokenlocation2.com")
+    /* create two tokens with uri */
+    await nft.createToken("404")
+    await nft.createToken("404")
 
     /* put both tokens for sale */
     await market.createMarketItem(nftContractAddress, 1, auctionPrice, { value: listingPrice })
     await market.createMarketItem(nftContractAddress, 2, auctionPrice, { value: listingPrice })
 
+    //The first address from ethers.getSigners is seller so we are ignoring that address and storing the second address as buyer
     const [_, buyerAddress] = await ethers.getSigners()
 
     /* execute sale of token to another user */
