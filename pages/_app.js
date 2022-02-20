@@ -30,6 +30,9 @@ function MyApp({ Component, pageProps }) {
         </div>
       </nav>
       <Component {...pageProps} />
+      <footer className='fixed bottom-0 justify-center'>
+        <p>Made by <a href="https://github.com/somesh-banerjee">¯\_( ͡° ͜ʖ ͡°)_/¯</a></p>
+      </footer>
     </div>
   )
 }
