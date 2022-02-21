@@ -29,7 +29,7 @@ export default function Home() {
     const data = await marketContract.fetchMarketItems()
 
     const items = await Promise.all(data.map(async i => {
-      const tokenUri = await tokenContract.tokenUri(i.tokenId)
+      const tokenUri = await tokenContract.tokenURI(i.tokenId)
       const meta  = await axios.get(tokenUri)
       let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
       let item = {
@@ -39,8 +39,9 @@ export default function Home() {
         owner: i.owner,
         image: meta.data.image,
         name: meta.data.name,
-        desciption: meta.data.desciption
+        description: meta.data.description
       }
+      console.log(item);
       return item
     }))
     setNfts(items)
