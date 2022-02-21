@@ -30,6 +30,18 @@ npm install
 npm run dev
 ```
 
+### Running the local chain using Hardhat
+
+1. Open two terminals and run
+```
+npx hardhat node
+```
+This will create 20 accounts with 10000 ETH. The first account will be used for most callings.
+2. Run the following to deploy the smart contract in the local chain
+```
+npx hardhat run scripts/deploy.js --network localhost
+```
+
 ## Components 
 
 Here is a in brief explanantion of all the functions and dependencies used and their purpose in each component.
