@@ -25,7 +25,7 @@ export default function Home() {
   }, [])
 
   const loadNFTs = async() => {
-    const provider = new ethers.providers.JsonRpcProvider()
+    const provider = new ethers.providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com')
     const tokenContract = new ethers.Contract(nftaddress, NFT.abi, provider)
     const marketContract = new ethers.Contract(marketaddress, MarketABI.abi, provider)
     const data = await marketContract.fetchMarketItems()
@@ -100,7 +100,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="p-4 bg-black">
-                  <p className="text-2xl mb-4 font-bold text-white">{nft.price} ETH</p>
+                  <p className="text-2xl mb-4 font-bold text-white">{nft.price} MATIC</p>
                   <button className="w-full bg-blue-500 text-white font-bold py-2 px-12 rounded" onClick={() => buyNFT(nft)}>Buy</button>
                 </div>
               </div>
