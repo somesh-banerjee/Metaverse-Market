@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 import Web3Modal from 'web3modal'
 import axios from 'axios'
+import Image from 'next/image'
 
 import {
   nftaddress, marketaddress
@@ -11,7 +12,7 @@ import {
 import NFT from "../artifacts/contracts/NFT.sol/NFT.json"
 import MarketABI from "../artifacts/contracts/Market.sol/NFTMarket.json"
 
-export default function myAssets() {
+export default function MyAssets() {
 
     const [nfts,setNFTs] = useState([])
     const [loadingState, setLoadingState] = useState('not-loaded')
@@ -58,7 +59,7 @@ export default function myAssets() {
                 {
                     nfts.map((nft, i) => (
                     <div key={i} className="border shadow rounded-xl overflow-hidden">
-                        <img src={nft.image} className="rounded" />
+                        <Image src={nft.image} alt="" className="rounded" />
                         <div className="p-4 bg-black">
                         <p className="text-2xl font-bold text-white">Price - {nft.price} Eth</p>
                         </div>
