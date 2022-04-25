@@ -29,7 +29,7 @@ contract NFTMarket is ReentrancyGuard {
     bool sold;
   }
 
-  mapping(uint256 => MarketItem) private idToMarketItem;
+  mapping(uint256 => MarketItem) public idToMarketItem;
 
   event MarketItemCreated (
     uint indexed itemId,
