@@ -88,14 +88,34 @@ export default function CreateItem() {
         const signer = provider.getSigner()
         //Contract instance for NFT
         let contract = new ethers.Contract(nftaddress, NFT.abi, signer)
+        let value
+        try {
+            //Creating the NFT
+            let transaction = await contract.createToken(url)
+            console.log(transaction);
+            let tx = await transaction.wait()
+            let event = tx.events[0]
+            value = event.args[2]
+            settokenId(value.toNumber())
+        } catch (err) {
+            console.log(err);
+        }
 
-        //Creating the NFT
-        let transaction = await contract.createToken(url)
-        console.log(transaction);
-        let tx = await transaction.wait()
-        let event = tx.events[0]
-        let value = event.args[2]
-        settokenId(value.toNumber())
+        try {
+            /* then list the item for sale on the marketplace */
+            let mContract = new ethers.Contract(marketaddress, MarketABI.abi, signer)
+            let listingPrice = await mContract.getListingPrice()
+            listingPrice = listingPrice.toString()
+
+            const price = ethers.utils.parseUnits(formInput.price, 'ether')
+            let mTransaction = await mContract.createMarketItem(nftaddress, value, price, { value: listingPrice })
+            await mTransaction.wait()
+        } catch (err) {
+            console.log(err)
+        }
+        
+        //After successful listing redirecting to home page
+        router.push('/')
     }
 
     const listSale = async() => {
@@ -159,10 +179,7 @@ export default function CreateItem() {
                     )
                 }
                 <button onClick={onSubmit} className='font-bold mt-4 bg-blue-500 text-white rounded p-4 shadow-lg'>
-                    Create Digital Asset
-                </button>
-                <button onClick={listSale} className='font-bold mt-4 bg-blue-500 text-white rounded p-4 shadow-lg'>
-                    List the Digital Asset
+                    Create Digital Asset and List on Market
                 </button>
             </div>
         </div>

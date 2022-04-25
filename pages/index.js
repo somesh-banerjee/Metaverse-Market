@@ -50,8 +50,8 @@ export default function Home() {
   }
 
   const buyNFT = async(nft) => {
-    setVisible(true)
-    return
+    // setVisible(true)
+    // return
     /* needs the user to sign the transaction, so will use Web3Provider and sign it */
     //Web3Modal to connect to any wallet present like metamask
     const web3Modal = new Web3Modal()
@@ -66,11 +66,22 @@ export default function Home() {
 
     //Have to solve can't convert string to big number
 
-    /*const price = ethers.utils.parseEther(nft.price.toString())
-    const transaction = await contract.createMarketSale(nftaddress, nft.tokenId, {
-      value: p
-    })
-    await transaction.wait()*/
+    const eth = parseFloat(nft.price)
+		const val = ethers.utils.parseEther(eth.toString())
+    // console.log(val.toString())
+    // console.log(nft.tokenID)
+    try {
+      const transaction = await contract.createMarketSale(
+        nftaddress,
+        nft.tokenID,
+        { value: val }
+      )      
+      await transaction.wait()
+      console.log(transaction)
+    } catch (err) {
+      console.log(err)
+    }
+    
     loadNFTs()
   }
 

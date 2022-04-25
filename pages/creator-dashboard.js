@@ -41,10 +41,13 @@ export default function CreatorDashboard() {
                 seller: i.seller,
                 owner: i.owner,
                 image: meta.data.image,
+                sold: i.sold
             }
             return item
         }))
         const soldItems = items.filter(i => i.sold)
+        // console.log(soldItems)
+        // console.log(items)
         setSold(soldItems)
         setNFTs(items)
         setLoadingState('loaded') 
@@ -72,7 +75,7 @@ export default function CreatorDashboard() {
                 </div>
             </div>
             <div className='p-4'>
-                <h2 className="text-2xl py-2">Items Created</h2>
+                <h2 className="text-2xl py-2">Items Sold</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
                 {
                     sold.map((nft, i) => (
