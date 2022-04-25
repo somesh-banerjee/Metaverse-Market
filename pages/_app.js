@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div>
+    <div className='app'>
       <nav className="border-b p-6">
         <p className="text-4xl font-bold">Metaverse Market</p>
         <div className="flex mt-4">
@@ -30,8 +30,10 @@ function MyApp({ Component, pageProps }) {
         </div>
       </nav>
       <Component {...pageProps} />
-      <footer className='fixed bottom-0 justify-center'>
-        <p>Made by <a href="https://github.com/somesh-banerjee">¯\_( ͡° ͜ʖ ͡°)_/¯</a></p>
+      <footer class="text-center text-white">
+        <div class="text-center text-gray-700 p-4">
+          Made with <span className='fa'>❤️</span> by <a href="https://github.com/somesh-banerjee">Somesh</a>
+        </div>
       </footer>
     </div>
   )
