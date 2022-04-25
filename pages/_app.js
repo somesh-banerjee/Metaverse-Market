@@ -30,8 +30,8 @@ function MyApp({ Component, pageProps }) {
         </div>
       </nav>
       <Component {...pageProps} />
-      <footer class="text-center text-white">
-        <div class="text-center text-gray-700 p-4">
+      <footer className="text-center text-white">
+        <div className="text-center text-gray-700 p-4">
           Made with <span className='fa'>❤️</span> by <a href="https://github.com/somesh-banerjee">Somesh</a>
         </div>
       </footer>
