@@ -68,8 +68,8 @@ export default function Home() {
 
     const eth = parseFloat(nft.price)
 		const val = ethers.utils.parseEther(eth.toString())
-    console.log(val.toString())
-    console.log(nft.tokenID)
+    // console.log(val.toString())
+    // console.log(nft.tokenID)
     try {
       const transaction = await contract.createMarketSale(
         nftaddress,

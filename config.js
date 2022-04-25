@@ -1,7 +1,7 @@
 
 //In Mumbai Testnet
-export const nftaddress = "0xaa228E0da019D2dc2C24d00708A07B54FEe4c8D2"
-export const marketaddress = "0x07Be74B3368E19a640B5726403E14a1175960f5B"
+export const nftaddress = "0x452B0472A45223d5d8319A1870F5c2e19834BD0e"
+export const marketaddress = "0xaC46dDEE72d9B66f93c1579BdD43E7fC6464c4e9"
 
 /*
 //In local
